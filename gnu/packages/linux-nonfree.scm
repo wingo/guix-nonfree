@@ -94,15 +94,15 @@
 (define-public ath10k-firmware-non-free
   (package
     (name "ath10k-firmware-non-free")
-    (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
+    (version "31f32a7d4bb8e5f5c63125c2d10f419cd04108c4")
     (source (origin
               (method git-fetch)
               (uri (git-reference
-                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+                    (url "https://github.com/kvalo/ath10k-firmware")
                     (commit version)))
               (sha256
                (base32
-                "1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
+                "1p0q50bs1h7wh6gkdkjmk3zjd16f7myvvhv46pnlza60smr5rynf"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
@@ -110,15 +110,13 @@
                    (use-modules (guix build utils))
                    (let ((source (assoc-ref %build-inputs "source"))
                          (fw-dir (string-append %output "/lib/firmware/")))
-                     (copy-recursively (string-append source "/ath10k")
+                     (copy-recursively (string-append source)
                                        (string-append fw-dir "/ath10k"))
                      #t))))
-
-    (home-page "")
+    (home-page "https://github.com/kvalo/ath10k-firmware")
     (synopsis "Non-free firmware for ath10k wireless chips")
     (description "Non-free firmware for ath10k integrated chips")
-    ;; FIXME: What license?
-    (license (license:non-copyleft "http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=blob_plain;f=LICENCE.radeon_firmware;hb=HEAD"))))
+    (license (license:non-copyleft "https://github.com/kvalo/ath10k-firmware/blob/master/LICENSE.qca_firmware"))))
 
 (define-public perf-nonfree
   (package

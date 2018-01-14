@@ -38,28 +38,28 @@
          "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "4.15-rc6"))
+  (let* ((version "4.14.10"))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
       (version version)
       (source (origin
                 (method url-fetch)
-                (uri (string-append "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-" version ".tar.gz"))
+                (uri (linux-nonfree-urls version))
                 (sha256
                  (base32
-                  "0j64qnwazrgpmbcxhvkmyg827575l67l6zjjfqj114ynbjdh22wi"))))
-       (synopsis "Mainline Linux kernel, nonfree binary blobs included")
+                  "046i3vcnhavblid71hrqdid4aay0rrcpzbiwlkcvs0x09hvz3fl6"))))
+      (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)
-      (home-page "https://www.kernel.org/"))))
+      (home-page "http://kernel.org/"))))
 
 ;;; Forgive me Stallman for I have sinned.
 
 (define-public radeon-firmware-non-free
   (package
     (name "radeon-firmware-non-free")
-    (version "0j64qnwazrgpmbcxhvkmyg827575l67l6zjjfqj114ynbjdh22wi")
+    (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
     (source (origin
               (method git-fetch)
               (uri (git-reference

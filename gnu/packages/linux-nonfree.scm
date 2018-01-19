@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2012, 2013, 2014, 2015 Ludovic Courtès <ludo@gnu.org>
+;;; Copyright © 2012, 2013, 2014, 2015, 2017 Ludovic Courtès <ludo@gnu.org>
 ;;; Copyright © 2013, 2014 Andreas Enge <andreas@enge.fr>
 ;;; Copyright © 2012 Nikita Karetnikov <nikita@karetnikov.org>
 ;;; Copyright © 2014, 2015 Mark H Weaver <mhw@netris.org>
@@ -38,7 +38,7 @@
          "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "4.12.5"))
+  (let* ((version "4.14.12"))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
@@ -48,7 +48,7 @@
                 (uri (linux-nonfree-urls version))
                 (sha256
                  (base32
-                  "1833ibdb13dbg5xmf500bxkin8ng4yav3l5qvfilj0v4ygjlhlbi"))))
+                  "1bsn73h3ilf7msyiqm5ny2zdj30b9r7k9sc8i03w3iggh3agf236"))))
       (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)
@@ -59,7 +59,7 @@
 (define-public radeon-firmware-non-free
   (package
     (name "radeon-firmware-non-free")
-    (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
+    (version "65b1c68c63f974d72610db38dfae49861117cae2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -67,7 +67,7 @@
                     (commit version)))
               (sha256
                (base32
-                "1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
+                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
@@ -94,7 +94,7 @@
 (define-public ath10k-firmware-non-free
   (package
     (name "ath10k-firmware-non-free")
-    (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
+    (version "65b1c68c63f974d72610db38dfae49861117cae2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -102,7 +102,7 @@
                     (commit version)))
               (sha256
                (base32
-                "1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
+                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
@@ -110,6 +110,7 @@
                    (use-modules (guix build utils))
                    (let ((source (assoc-ref %build-inputs "source"))
                          (fw-dir (string-append %output "/lib/firmware/")))
+                     (mkdir-p fw-dir)
                      (copy-recursively (string-append source "/ath10k")
                                        (string-append fw-dir "/ath10k"))
                      #t))))
@@ -117,6 +118,35 @@
     (home-page "")
     (synopsis "Non-free firmware for ath10k wireless chips")
     (description "Non-free firmware for ath10k integrated chips")
+    ;; FIXME: What license?
+    (license (license:non-copyleft "http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=blob_plain;f=LICENCE.radeon_firmware;hb=HEAD"))))
+
+(define-public linux-firmware-non-free
+  (package
+    (name "linux-firmware-non-free")
+    (version "65b1c68c63f974d72610db38dfae49861117cae2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+                    (commit version)))
+              (sha256
+               (base32
+                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
+    (build-system trivial-build-system)
+    (arguments
+     `(#:modules ((guix build utils))
+       #:builder (begin
+                   (use-modules (guix build utils))
+                   (let ((source (assoc-ref %build-inputs "source"))
+                         (fw-dir (string-append %output "/lib/firmware/")))
+                     (mkdir-p fw-dir)
+                     (copy-recursively source fw-dir)
+                     #t))))
+
+    (home-page "")
+    (synopsis "Non-free firmware for Linux")
+    (description "Non-free firmware for Linux")
     ;; FIXME: What license?
     (license (license:non-copyleft "http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=blob_plain;f=LICENCE.radeon_firmware;hb=HEAD"))))
 
@@ -131,7 +161,7 @@
 (define-public iwlwifi-firmware-nonfree
   (package
     (name "iwlwifi-firmware-nonfree")
-    (version "c883a6b6186bb2415761d287cbac773062911212")
+    (version "65b1c68c63f974d72610db38dfae49861117cae2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -139,7 +169,7 @@
                     (commit version)))
               (sha256
                (base32
-                "1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
+                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
@@ -164,7 +194,7 @@
 (define-public ibt-hw-firmware-nonfree
   (package
     (name "ibt-hw-firmware-nonfree")
-    (version "c883a6b6186bb2415761d287cbac773062911212")
+    (version "65b1c68c63f974d72610db38dfae49861117cae2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -172,7 +202,7 @@
                     (commit version)))
               (sha256
                (base32
-                "1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
+                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))

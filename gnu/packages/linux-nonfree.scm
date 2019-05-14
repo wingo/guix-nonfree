@@ -34,21 +34,21 @@
 (define (linux-nonfree-urls version)
   "Return a list of URLs for Linux-Nonfree VERSION."
   (list (string-append
-         "https://www.kernel.org/pub/linux/kernel/v4.x/"
-         "linux-" version ".tar.xz")))
+	 "https://www.kernel.org/pub/linux/kernel/v5.x/"
+	 "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "4.14.13"))
+  (let* ((version (package-version linux-libre)))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
       (version version)
       (source (origin
-                (method url-fetch)
-                (uri (linux-nonfree-urls version))
-                (sha256
-                 (base32
-                  "0wjpwhrnnvf6l3zpkkxk34dl722w9yp8j3vnh0xzi3hgb8dnvd2a"))))
+		(method url-fetch)
+		(uri (linux-nonfree-urls version))
+		(sha256
+		 (base32
+		  "0xjycbjlzpgskqnwcjml60vkbg7r8fsijdj6ypmhpry7q8ii677a"))))
       (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)
@@ -61,29 +61,29 @@
     (name "radeon-firmware-non-free")
     (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
     (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
-                    (commit version)))
-              (sha256
-               (base32
-                "1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
+	      (method git-fetch)
+	      (uri (git-reference
+		    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+		    (commit version)))
+	      (sha256
+	       (base32
+		"1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
        #:builder (begin
-                   (use-modules (guix build utils))
-                   (let ((source (assoc-ref %build-inputs "source"))
-                         (fw-dir (string-append %output "/lib/firmware/radeon/")))
-                     (mkdir-p fw-dir)
-                     (for-each (lambda (file)
-                                 (copy-file file
-                                            (string-append fw-dir "/"
-                                                           (basename file))))
-                               (find-files source
-                                           (lambda (file stat)
-                                             (string-contains file "radeon"))))
-                     #t))))
+		   (use-modules (guix build utils))
+		   (let ((source (assoc-ref %build-inputs "source"))
+			 (fw-dir (string-append %output "/lib/firmware/radeon/")))
+		     (mkdir-p fw-dir)
+		     (for-each (lambda (file)
+				 (copy-file file
+					    (string-append fw-dir "/"
+							   (basename file))))
+			       (find-files source
+					   (lambda (file stat)
+					     (string-contains file "radeon"))))
+		     #t))))
 
     (home-page "")
     (synopsis "Non-free firmware for Radeon integrated chips")
@@ -96,23 +96,23 @@
     (name "ath10k-firmware-non-free")
     (version "7d2c913dcd1be083350d97a8cb1eba24cfacbc8a")
     (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
-                    (commit version)))
-              (sha256
-               (base32
-                "1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
+	      (method git-fetch)
+	      (uri (git-reference
+		    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+		    (commit version)))
+	      (sha256
+	       (base32
+		"1xwzsfa4x43z6s3284hmwgpxbvr15gg89bdanhg7i2xcll4xspxp"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
        #:builder (begin
-                   (use-modules (guix build utils))
-                   (let ((source (assoc-ref %build-inputs "source"))
-                         (fw-dir (string-append %output "/lib/firmware/")))
-                     (copy-recursively (string-append source "/ath10k")
-                                       (string-append fw-dir "/ath10k"))
-                     #t))))
+		   (use-modules (guix build utils))
+		   (let ((source (assoc-ref %build-inputs "source"))
+			 (fw-dir (string-append %output "/lib/firmware/")))
+		     (copy-recursively (string-append source "/ath10k")
+				       (string-append fw-dir "/ath10k"))
+		     #t))))
 
     (home-page "")
     (synopsis "Non-free firmware for ath10k wireless chips")
@@ -133,27 +133,27 @@
     (name "iwlwifi-firmware-nonfree")
     (version "c883a6b6186bb2415761d287cbac773062911212")
     (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
-                    (commit version)))
-              (sha256
-               (base32
-                "1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
+	      (method git-fetch)
+	      (uri (git-reference
+		    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+		    (commit version)))
+	      (sha256
+	       (base32
+		"1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
        #:builder (begin
-                   (use-modules (guix build utils))
-                   (let ((source (assoc-ref %build-inputs "source"))
-                         (fw-dir (string-append %output "/lib/firmware")))
-                     (mkdir-p fw-dir)
-                     (for-each (lambda (file)
-                                 (copy-file file
-                                            (string-append fw-dir "/"
-                                                           (basename file))))
-                               (find-files source "iwlwifi-.*\\.ucode$|LICENCE\\.iwlwifi_firmware$"))
-                     #t))))
+		   (use-modules (guix build utils))
+		   (let ((source (assoc-ref %build-inputs "source"))
+			 (fw-dir (string-append %output "/lib/firmware")))
+		     (mkdir-p fw-dir)
+		     (for-each (lambda (file)
+				 (copy-file file
+					    (string-append fw-dir "/"
+							   (basename file))))
+			       (find-files source "iwlwifi-.*\\.ucode$|LICENCE\\.iwlwifi_firmware$"))
+		     #t))))
 
     (home-page "https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi")
     (synopsis "Non-free firmware for Intel wifi chips")
@@ -166,27 +166,27 @@
     (name "ibt-hw-firmware-nonfree")
     (version "c883a6b6186bb2415761d287cbac773062911212")
     (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
-                    (commit version)))
-              (sha256
-               (base32
-                "1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
+	      (method git-fetch)
+	      (uri (git-reference
+		    (url "git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+		    (commit version)))
+	      (sha256
+	       (base32
+		"1a8s17w1l4vml069lc2dwmlspd38021ij1y8gzwl24r6giv5hnzj"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
        #:builder (begin
-                   (use-modules (guix build utils))
-                   (let ((source (assoc-ref %build-inputs "source"))
-                         (fw-dir (string-append %output "/lib/firmware/intel")))
-                     (mkdir-p fw-dir)
-                     (for-each (lambda (file)
-                                 (copy-file file
-                                            (string-append fw-dir "/"
-                                                           (basename file))))
-                               (find-files source "ibt-hw-.*\\.bseq$|LICENCE\\.ibt_firmware$"))
-                     #t))))
+		   (use-modules (guix build utils))
+		   (let ((source (assoc-ref %build-inputs "source"))
+			 (fw-dir (string-append %output "/lib/firmware/intel")))
+		     (mkdir-p fw-dir)
+		     (for-each (lambda (file)
+				 (copy-file file
+					    (string-append fw-dir "/"
+							   (basename file))))
+			       (find-files source "ibt-hw-.*\\.bseq$|LICENCE\\.ibt_firmware$"))
+		     #t))))
 
     (home-page "http://www.intel.com/support/wireless/wlan/sb/CS-016675.htm")
     (synopsis "Non-free firmware for Intel bluetooth chips")

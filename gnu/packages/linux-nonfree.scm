@@ -37,22 +37,22 @@
 	 "https://www.kernel.org/pub/linux/kernel/v5.x/"
 	 "linux-" version ".tar.xz")))
 
-(define-public linux-nonfree
-  (let* ((version "5.0.10"))
+`(define-public linux-nonfree
+  (let* ((version "5.1.2"))
     (package
-      (inherit linux-libre)
-      (name "linux-nonfree")
-      (version version)
-      (source (origin
-		(method url-fetch)
-		(uri (linux-nonfree-urls version))
-		(sha256
-		 (base32
-		  "0xjycbjlzpgskqnwcjml60vkbg7r8fsijdj6ypmhpry7q8ii677a"))))
-      (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
-      (description "Linux is a kernel.")
-      (license license:gpl2)
-      (home-page "http://kernel.org/"))))
+     (inherit linux-libre)
+     (name "linux-nonfree")
+     (version version)
+     (source (origin
+	      (method url-fetch)
+	      (uri (linux-nonfree-urls version))
+	      (sha256
+	       (base32
+		"0nzgkg4si0378pz6cv3hwj7qmmi5wdz1qvml0198b61n89xdcypc"))))
+     (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
+     (description "Linux is a kernel.")
+     (license license:gpl2)
+     (home-page "http://kernel.org/"))))
 
 ;;; Forgive me Stallman for I have sinned.
 

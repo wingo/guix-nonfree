@@ -38,7 +38,7 @@
          "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "4.18.5"))
+  (let* ((version "5.4.15"))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
@@ -48,13 +48,11 @@
                 (uri (linux-nonfree-urls version))
                 (sha256
                  (base32
-                  "1ga7ys6s5d9dk1ly9722sbik1y6kbc3w6nw9pw86zpzdh0v0l2gv"))))
+                  "1ccldlwj89qd22cl06706w7xzm8n69m6kg8ic0s5ns0ghlpj41v4"))))
       (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)
       (home-page "http://kernel.org/"))))
-
-;;; Forgive me Stallman for I have sinned.
 
 (define-public radeon-firmware-non-free
   (package
@@ -124,7 +122,7 @@
 (define-public linux-firmware-non-free
   (package
     (name "linux-firmware-non-free")
-    (version "65b1c68c63f974d72610db38dfae49861117cae2")
+    (version "1eb2408c6feacccd10b02a49214745f15d1c6fb7")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -132,7 +130,7 @@
                     (commit version)))
               (sha256
                (base32
-                "1anr7fblxfcrfrrgq98kzy64yrwygc2wdgi47skdmjxhi3wbrvxz"))))
+                "0256p99bqwf1d1s6gqnzpjcdmg6skcp1jzz64sd1p29xxrf0pzfa"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))

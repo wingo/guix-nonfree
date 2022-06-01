@@ -34,11 +34,11 @@
 (define (linux-nonfree-urls version)
   "Return a list of URLs for Linux-Nonfree VERSION."
   (list (string-append
-         "https://www.kernel.org/pub/linux/kernel/v4.x/"
+         "https://www.kernel.org/pub/linux/kernel/v5.x/"
          "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "5.4.15"))
+  (let* ((version "5.16.17"))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
@@ -48,7 +48,7 @@
                 (uri (linux-nonfree-urls version))
                 (sha256
                  (base32
-                  "1ccldlwj89qd22cl06706w7xzm8n69m6kg8ic0s5ns0ghlpj41v4"))))
+                  "1z7i6z36rs777xiff5x3qjdc02x91n9ibf7rqr003ws7bf84vvnf"))))
       (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)

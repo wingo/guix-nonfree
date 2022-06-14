@@ -38,7 +38,7 @@
          "linux-" version ".tar.xz")))
 
 (define-public linux-nonfree
-  (let* ((version "5.16.17"))
+  (let* ((version "5.17.12"))
     (package
       (inherit linux-libre)
       (name "linux-nonfree")
@@ -48,7 +48,7 @@
                 (uri (linux-nonfree-urls version))
                 (sha256
                  (base32
-                  "1z7i6z36rs777xiff5x3qjdc02x91n9ibf7rqr003ws7bf84vvnf"))))
+                  "0yr8xfds5l1s3lk8qk67mgy0l4yh2jfvjc7xwrfws3ci020ss9a2"))))
       (synopsis "Mainline Linux kernel, nonfree binary blobs included.")
       (description "Linux is a kernel.")
       (license license:gpl2)
@@ -122,7 +122,7 @@
 (define-public linux-firmware-non-free
   (package
     (name "linux-firmware-non-free")
-    (version "1eb2408c6feacccd10b02a49214745f15d1c6fb7")
+    (version "7b71b75be8fb0fa7cceeb3dc22f97920a6be28bd")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -130,7 +130,7 @@
                     (commit version)))
               (sha256
                (base32
-                "0256p99bqwf1d1s6gqnzpjcdmg6skcp1jzz64sd1p29xxrf0pzfa"))))
+                "10k16ym98xss0izgmflkr57fi4qrafc0dp9brbmzzbwz6swj9hxy"))))
     (build-system trivial-build-system)
     (arguments
      `(#:modules ((guix build utils))
